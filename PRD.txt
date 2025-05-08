@@ -1,0 +1,117 @@
+Okay, here's a simplified development plan for Unbias Lending, presented in a task and sub-task format, keeping in mind the removal of agent-related functionalities:
+
+---
+
+**Unbias Lending - Simplified Development Plan (MVP)**
+
+**Phase 0: Setup & Foundations**
+* **Task 0.1:** Set Up Accounts & Services
+    * Sub-task 0.1.1: Create a Supabase account (for database and authentication).
+    * Sub-task 0.1.2: Create a Vercel account (for application deployment).
+* **Task 0.2:** Initialize Project
+    * Sub-task 0.2.1: Use an AI coding assistant (e.g., Cursor) to initialize a new Next.js project.
+    * Sub-task 0.2.2: Integrate Tailwind CSS for styling.
+    * Sub-task 0.2.3: Set up basic project structure.
+* **Task 0.3:** Familiarize with Tools
+    * Sub-task 0.3.1: Understand Supabase and Vercel dashboards.
+    * Sub-task 0.3.2: Locate API keys for Supabase.
+
+**Phase 1: Core Authentication & Database Structure**
+* **Task 1.1:** Implement Borrower Authentication
+    * Sub-task 1.1.1: Configure OTP-based mobile number login using Supabase Auth.
+    * Sub-task 1.1.2: Create a login page UI for mobile number input and OTP verification.
+    * Sub-task 1.1.3: Test user registration and login flow.
+* **Task 1.2:** Define and Create Core Database Schema in Supabase
+    * Sub-task 1.2.1: Design schema for the 'borrowers' table (e.g., mobile, income, profile data).
+    * Sub-task 1.2.2: Design schema for the 'lender_products' table (e.g., lender name, product details, eligibility criteria).
+    * Sub-task 1.2.3: Design schema for the 'documents' table (to link uploaded files to borrowers).
+    * Sub-task 1.2.4: Design schema for 'matched_offers' (or similar to link borrowers to relevant offers).
+    * Sub-task 1.2.5: Implement these tables using the Supabase SQL editor or management interface.
+* **Task 1.3:** Conceptualize Role Management
+    * Sub-task 1.3.1: Define how 'borrower' and 'admin' roles will be distinguished (e.g., a field in user data).
+
+**Phase 2: Borrower Onboarding**
+* **Task 2.1:** Develop Borrower Onboarding Form UI
+    * Sub-task 2.1.1: Design a multi-step form UI (e.g., Step 1: Personal Info, Step 2: Income Details, Step 3: Loan Requirements).
+    * Sub-task 2.1.2: Implement form components using React (Next.js) and Tailwind CSS.
+    * Sub-task 2.1.3: Ensure form steps are clear with navigation (next/back buttons).
+* **Task 2.2:** Implement Form Logic
+    * Sub-task 2.2.1: Add client-side validation for required fields and data types.
+    * Sub-task 2.2.2: Develop backend logic (Next.js API route) to receive form data.
+    * Sub-task 2.2.3: Implement logic to save submitted borrower data to the 'borrowers' table in Supabase.
+* **Task 2.3:** Test Borrower Onboarding Flow
+    * Sub-task 2.3.1: Verify form usability and data validation.
+    * Sub-task 2.3.2: Confirm data is correctly saved in the Supabase 'borrowers' table.
+
+**Phase 3: Admin - Lender Product Management**
+* **Task 3.1:** Set Up Basic Admin Section
+    * Sub-task 3.1.1: Create a simple, access-restricted admin page/dashboard.
+    * Sub-task 3.1.2: Implement role-based access control if 'admin' role is formally defined.
+* **Task 3.2:** Develop Lender Product Input Form
+    * Sub-task 3.2.1: Design a form with fields for lender product details (Lender Name, Product Name, Rates, Fees, Eligibility).
+    * Sub-task 3.2.2: Implement the form UI on the admin page using Tailwind CSS.
+* **Task 3.3:** Implement Product Data Handling
+    * Sub-task 3.3.1: Develop backend logic (Next.js API route) to save product form data.
+    * Sub-task 3.3.2: Save data to the 'lender_products' table in Supabase.
+* **Task 3.4:** Display Lender Products
+    * Sub-task 3.4.1: Create a simple table or list on the admin page to display existing lender products from Supabase.
+* **Task 3.5:** Test Lender Product Management
+    * Sub-task 3.5.1: Verify admins can add and view lender products.
+    * Sub-task 3.5.2: Confirm data is correctly stored in Supabase.
+
+**Phase 4: Core Matching Logic & Borrower Loan Comparison**
+* **Task 4.1:** Develop Initial Matching Algorithm (V1)
+    * Sub-task 4.1.1: Define simple matching criteria (e.g., income range, loan amount vs. product limits).
+    * Sub-task 4.1.2: Implement this logic, likely in a Next.js API route or a Supabase Edge Function.
+    * Sub-task 4.1.3: The function should take borrower data and return a list of matching products with a basic 'match_score'.
+* **Task 4.2:** Create Loan Offer Display UI for Borrowers
+    * Sub-task 4.2.1: Design a "Loan Offer Card" component to display Lender Name, Product Name, Rate, Match %, Tags, Fees.
+    * Sub-task 4.2.2: Implement this component using React and Tailwind CSS.
+* **Task 4.3:** Implement Borrower Loan Comparison Dashboard
+    * Sub-task 4.3.1: Create a borrower dashboard page.
+    * Sub-task 4.3.2: On page load (after login and profile completion), fetch the borrower's profile.
+    * Sub-task 4.3.3: Call the matching algorithm API with borrower data.
+    * Sub-task 4.3.4: Display returned loan offers using the 'LoanOfferCard' component, sorted by match score.
+* **Task 4.4:** Test Matching and Display
+    * Sub-task 4.4.1: Verify matches are sensible based on criteria.
+    * Sub-task 4.4.2: Ensure offer cards display information correctly.
+
+**Phase 5: Admin - Borrower Application Viewing**
+* **Task 5.1:** Develop Admin View for Borrower Data
+    * Sub-task 5.1.1: On the admin dashboard, create a section to list borrower profiles/applications from the 'borrowers' table.
+    * Sub-task 5.1.2: Display key borrower information in a summary view.
+    * Sub-task 5.1.3: (Optional for MVP) Implement a way to view full details of a selected borrower.
+* **Task 5.2:** Test Borrower Data Viewing by Admin
+    * Sub-task 5.2.1: Confirm admins can access and view the list of borrowers.
+
+**Phase 6: Document Upload & Basic Notifications**
+* **Task 6.1:** Implement Document Upload for Borrowers
+    * Sub-task 6.1.1: Integrate Supabase Storage for file uploads.
+    * Sub-task 6.1.2: Create a UI element on the borrower dashboard for document uploads (e.g., PDF, JPG).
+    * Sub-task 6.1.3: Link uploaded documents to the borrower ID in the 'documents' table, storing file path/name.
+* **Task 6.2:** Set Up Basic Notification System
+    * Sub-task 6.2.1: Plan for initial notifications (e.g., welcome email on registration).
+    * Sub-task 6.2.2: Explore Supabase Edge Functions to trigger on database events (e.g., new user registration).
+    * Sub-task 6.2.3: Integrate with an email provider (e.g., Resend) to send emails via the Edge Function.
+* **Task 6.3:** Test Document Upload and Notifications
+    * Sub-task 6.3.1: Verify users can upload documents and they are stored correctly.
+    * Sub-task 6.3.2: Confirm basic notifications are triggered and received.
+
+**Phase 7: Refinement, Testing & Deployment**
+* **Task 7.1:** Conduct Thorough End-to-End Testing
+    * Sub-task 7.1.1: Test all borrower user flows (registration, login, onboarding, viewing offers, uploading documents).
+    * Sub-task 7.1.2: Test all admin user flows (login, managing products, viewing borrowers).
+* **Task 7.2:** UI/UX Review and Refinement
+    * Sub-task 7.2.1: Ensure consistency in design and usability across the platform.
+    * Sub-task 7.2.2: Check responsive design on mobile, tablet, and desktop.
+    * Sub-task 7.2.3: Make necessary UI adjustments using Tailwind CSS.
+* **Task 7.3:** Prepare for Deployment
+    * Sub-task 7.3.1: Connect the project repository (e.g., GitHub, where Cursor saves code) to Vercel.
+    * Sub-task 7.3.2: Configure all necessary environment variables in Vercel (Supabase URL, API keys, email service keys, etc.).
+* **Task 7.4:** Deploy to Vercel
+    * Sub-task 7.4.1: Trigger deployment.
+    * Sub-task 7.4.2: Test the live application.
+
+---
+
+This simplified plan focuses on the core tasks for building your MVP. Remember to test each feature as it's developed and iterate based on the results.

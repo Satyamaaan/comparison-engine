@@ -1,0 +1,174 @@
+# Unbias Lending - Motiff UI Generation Prompts
+
+## General Kickoff Prompt
+
+Create a modern, clean UI design for Unbias Lending, a loan comparison platform that helps borrowers find the best matching loan products based on their profile. The interface should follow a minimalist aesthetic with primary color #FFFDFA (off-white), secondary color #292B29 (dark gray), and accent color #047857 (dark green) in a 60-30-10 ratio. Use Inter font family with varying weights for typography hierarchy. The design should convey trust, transparency, and ease-of-use while maintaining professional financial service standards. Include responsive layouts for both mobile and desktop views.
+
+## Design System Specifications
+
+**Color Scheme (60-30-10 Rule)**
+- Primary color (60%): #FFFDFA (off-white) - Use for backgrounds, cards, and main content areas
+- Secondary color (30%): #292B29 (dark gray) - Use for text, headers, and secondary elements
+- Accent color (10%): #047857 (dark green) - Use for CTAs, highlights, and important elements
+
+**Typography**
+- Font family: Inter
+- Font weights:
+  - Light (300): For secondary text, captions, and supplementary information
+  - Regular (400): For body text and form labels
+  - Medium (500): For section headers and subheadings
+  - Semibold (600): For important information and field values
+  - Bold (700): For main headings and CTA button text
+
+**Border Radius**
+- Small: 4px (inputs, small buttons)
+- Medium: 8px (cards, containers, larger buttons)
+- Large: 12px (modals, main sections)
+
+## Authentication Screens
+
+1. **Mobile Number Login Screen**
+   A login page of a loan comparison app for borrowers to easily enter their mobile number for authentication. Use primary color #FFFDFA for background, secondary color #292B29 for text, and accent color #047857 for the login button. All input fields and buttons should have 8px border radius. The detailed sections are as follows:
+   1. Top section with the app logo and "Login to Unbias Lending" text in Inter Bold (700).
+   2. Middle section with clear instructions in Inter Regular (400), mobile number input field with country code selector using primary background and secondary text colors, and a prominent "Send OTP" button in accent color with white text in Inter Semibold (600).
+   3. Bottom section with alternative login options and "New user? Register here" text in Inter Medium (500), with the "Register here" in accent color.
+
+2. **OTP Verification Screen**
+   A verification page of a loan comparison app for borrowers to confirm their identity with a one-time password. Maintain the primary color #FFFDFA background, secondary color #292B29 for instructions, and accent color #047857 for the verify button. OTP input boxes should have 4px border radius. The detailed sections are as follows:
+   1. Top section with "Verify Your Mobile" heading in Inter Bold (700) and brief instructions in Inter Regular (400).
+   2. Middle section with 4-6 separate OTP input boxes for easy code entry with light borders, timer showing expiration countdown in Inter Light (300), and "Verify" button in accent color with Inter Semibold (600) text.
+   3. Bottom section with "Resend OTP" option in accent color using Inter Medium (500) and "Back to Login" link in secondary color.
+
+## Borrower Screens
+
+3. **Multi-step Onboarding Form - Step 1: Property Information**
+   A property information form of a loan comparison app for borrowers to provide details about their property. Use primary color #FFFDFA for background and cards, secondary color #292B29 for text and labels, and accent color #047857 for the progress indicator and next button. Form containers should have 12px border radius and inputs 4px. The detailed sections are as follows:
+   1. Top navigation showing step 1 of 4 is active with progress indicator in accent color, with step titles in Inter Medium (500).
+   2. Form section with clearly presented questions:
+      - "Have you finalized a property?" with two radio button options: "Yes, I have" and "No, I am still looking" in Inter Regular (400)
+      - "What is your property's value?" with seven options presented as selectable cards: "15-25 lakhs", "25-50 lakhs", "50-75 lakhs", "75 lakhs-1cr", "1-1.5 crore", "1.5-2 crore", "Above 2 crore"
+      - "Where is your property?" with dropdown selection, "Ahmedabad" pre-selected, and "Other" option with a conditional field for specifying location
+   3. Bottom section with prominent "Next" button in accent color #047857 with white text in Inter Semibold (600).
+
+4. **Multi-step Onboarding Form - Step 2: Personal Information**
+   A personal information form of a loan comparison app for borrowers to provide their details. Maintain primary color #FFFDFA for background, secondary color #292B29 for form labels, and accent color #047857 for active progress steps and buttons. Use 8px border radius for dropdown selectors. The detailed sections are as follows:
+   1. Top navigation showing step 2 of 4 is active with progress indicator in accent color, with completed steps in a lighter shade of the accent color.
+   2. Form section with clearly presented question:
+      - "How old are you?" with three age range options as radio buttons or selectable cards: "21-40 years old", "41-50 years old", "over 51 years"
+      - Include mobile number verification field (pre-filled from login)
+      - Include additional fields for full name and email address if needed
+   3. Bottom section with "Back" button in outlined style with secondary color and "Next" button in solid accent color, both with Inter Semibold (600) text.
+
+5. **Multi-step Onboarding Form - Step 3: Income Details**
+   An income information form of a loan comparison app for borrowers to provide their financial status. Follow primary color #FFFDFA background, secondary color #292B29 text, and accent color #047857 for interactive elements. Radio buttons and selection cards should have appropriate spacing and visual hierarchy. The detailed sections are as follows:
+   1. Top navigation showing step 3 of 4 is active with progress indicator, maintaining consistent styling with previous steps.
+   2. Form section with employment type selection:
+      - "How are you employed?" with two main options: "I make a salary" and "I am self-employed"
+      - Conditional fields that change based on selection:
+        - For "I make a salary": Show "Gross Monthly Income" selector with options "Below 50k", "50k-70k", "70k-1 lakh", "1 lakh-1.5 lakhs", "1.5 lakhs-2 lakhs", "2 lakhs-2.5 lakhs", "2.5 lakhs-3 lakhs", "above 3 lakhs"
+        - For "I am self-employed": Show "How much profit did you book in your last year's ITR?" with options "Below 25 lakhs", "25 lakhs-50 lakhs", "50 lakhs-75 lakhs", "75 lakhs-1 crore", "1 crore-1.5 crore", "1.5 crore-2 crore", "above 2 crore"
+      - "Do you pay any EMIs?" field with currency input for total EMI amount, with helper text "Include the total of all EMIs being paid. Leave empty if none."
+   3. Bottom section with consistently styled "Back" and "Next" buttons as in step 2.
+
+6. **Multi-step Onboarding Form - Step 4: Confirmation**
+   A confirmation page of a loan comparison app for borrowers to review and submit their information. Use primary color #FFFDFA for background and card containers (12px border radius), secondary color #292B29 for text, and accent color #047857 for submit button and edit icons. The detailed sections are as follows:
+   1. Top navigation showing step 4 of 4 is active with progress indicator completed in accent color.
+   2. Summary section showing all provided information categorized by:
+      - Property Information summary (property status, value, and location) with edit icon in accent color
+      - Personal Information summary (age group, contact details) with edit icon in accent color
+      - Income Information summary (employment type, income/profit ranges, existing EMIs) with edit icon in accent color
+      - Each section should have headers in Inter Semibold (600), field labels in Inter Regular (400), and values in Inter Medium (500)
+   3. Bottom section with checkbox for terms agreement with accent-colored checkmark and prominent "Submit" button in accent color #047857 with white text in Inter Bold (700).
+
+7. **Borrower Dashboard**
+   A dashboard page of a loan comparison app for borrowers to access all key features. Use primary color #FFFDFA for background, secondary color #292B29 for text and icons, and accent color #047857 for highlights and important metrics. Cards should have 8px border radius with subtle shadows. The detailed sections are as follows:
+   1. Top navigation bar with the app logo, "Dashboard" title in Inter Bold (700), and notification bell icon in secondary color.
+   2. Welcome section with user's name in Inter Semibold (600) and profile completion percentage displayed as a progress bar in accent color.
+   3. Middle section with card-based navigation to "View Loan Offers," "Upload Documents," and "Edit Profile." Cards should have primary background with 8px border radius and accent-colored icons.
+   4. Recent activity or notification preview section with alternating subtle background colors and timestamps in Inter Light (300).
+   5. Bottom navigation bar with icons for "Home," "Offers," "Documents," and "Profile," with active icon in accent color.
+
+8. **Loan Comparison Screen**
+   A comparison page of a loan comparison app for borrowers to view and analyze matching loan options. Use primary color #FFFDFA for background, secondary color #292B29 for text, and accent color #047857 for match percentage and CTAs. Cards should have 8px border radius with subtle shadows. The detailed sections are as follows:
+   1. Top section with "Your Matching Loans" heading in Inter Bold (700) and filtering options with pill-shaped selectors (8px border radius).
+   2. Main section with scrollable list of loan offer cards (8px border radius), each showing lender logo, loan name in Inter Semibold (600), interest rate, match percentage in accent color, key tags as small pills, and "View Details" button with accent-colored outline.
+   3. Each card clearly displays the most important loan metrics with visual indicators for match quality using varying intensities of the accent color.
+   4. Bottom navigation bar with "Home," "Offers," "Documents," and "Profile" options, with "Offers" highlighted in accent color.
+
+9. **Loan Details Screen**
+   A detailed view page of a loan comparison app for borrowers to see comprehensive information about a specific loan offer. Use primary color #FFFDFA for background and card containers (12px border radius), secondary color #292B29 for text, and accent color #047857 for tabs and CTA. The detailed sections are as follows:
+   1. Top navigation with "Back to Offers" option with left-pointing arrow and lender name/logo, using Inter Semibold (600).
+   2. Key information section showing loan amount, interest rate, term, and monthly payment amount in a highlighted card with important values in Inter Bold (700).
+   3. Tabbed sections for "Overview," "Eligibility," "Fees," and "Repayment Calculator" with active tab in accent color, tab content in cards with 8px border radius.
+   4. Bottom section with prominent "Express Interest" or "Apply Now" button in accent color #047857 with white text in Inter Bold (700).
+
+10. **Document Upload Interface**
+    A document management page of a loan comparison app for borrowers to submit required verification documents. Use primary color #FFFDFA for background, secondary color #292B29 for text and instructions, and accent color #047857 for upload buttons and progress indicators. Document cards should have 8px border radius. The detailed sections are as follows:
+    1. Top section with "Documents" heading in Inter Bold (700) and upload progress indicator as circular chart using accent color.
+    2. Main section with list of required documents (ID proof, address proof, income proof, etc.), each in a card with upload status indicator using color-coding (accent green for verified, amber for pending), upload/retake button with accent-colored outline, and preview thumbnail with 4px border radius.
+    3. Instructions section explaining accepted file formats and size limits in Inter Light (300).
+    4. Bottom navigation bar with app navigation options, with "Documents" highlighted in accent color.
+
+## Admin Screens
+
+11. **Admin Login Screen**
+    A secure login page of a loan comparison platform admin interface for staff to access the management system. Use a darker variation of the primary color for background, secondary color #292B29 for text, and accent color #047857 for login button. All fields should have 4px border radius. The detailed sections are as follows:
+    1. Top section with company logo and "Admin Portal" text in Inter Bold (700).
+    2. Login form with username/email field, password field with toggle visibility option, "Remember me" checkbox with accent-colored checkmark, and "Login" button in accent color with white text in Inter Semibold (600).
+    3. Bottom section with forgotten password option in accent color and security information in Inter Light (300).
+
+12. **Admin Dashboard**
+    A control center page of a loan comparison platform admin interface for staff to monitor platform activity and access management functions. Use primary color #FFFDFA for main background, secondary color #292B29 for sidebar and text, and accent color #047857 for highlights and key metrics. Cards should have 8px border radius. The detailed sections are as follows:
+    1. Top navigation with company logo, search bar with 4px border radius, and admin user profile with subtle drop shadow.
+    2. Left sidebar in secondary color #292B29 with white text navigation links to different admin sections, active link highlighted with accent color.
+    3. Main content area with statistics cards (8px border radius) showing key metrics (total borrowers, active loans, new applications, etc.) with accent-colored numbers in Inter Bold (700).
+    4. Recent activity feed showing latest platform events with alternating subtle background colors and timestamps in Inter Light (300).
+    5. Quick access links to most common admin tasks as outlined buttons with accent color hover effect.
+
+13. **Lender Product Management Form**
+    A product creation page of a loan comparison platform admin interface for staff to add or edit loan products. Use primary color #FFFDFA for background, secondary color #292B29 for section headers and text, and accent color #047857 for interactive elements. Form sections should have 12px border radius. The detailed sections are as follows:
+    1. Top section with "Add/Edit Loan Product" heading in Inter Bold (700).
+    2. Form fields divided into logical sections with card-like containers (12px border radius):
+       - Basic information (lender name, product name, product type) with field labels in Inter Regular (400)
+       - Interest and term details (rate range, loan term options) with input values in Inter Medium (500)
+       - Fees and charges (application fee, processing fee, prepayment penalties) with currency inputs
+       - Eligibility criteria (minimum income, credit score requirements, employment type) with appropriate input types
+       - Product features and benefits as bullet points with add/remove controls in accent color
+    3. Bottom section with "Cancel" button in outlined style and "Save Product" button in accent color #047857, both with Inter Semibold (600) text.
+
+14. **Lender Products List View**
+    A management page of a loan comparison platform admin interface for staff to view and manage all loan products. Use primary color #FFFDFA for background, secondary color #292B29 for text and table headers, and accent color #047857 for interactive elements and status indicators. Table should have 8px border radius with subtle borders. The detailed sections are as follows:
+    1. Top section with "Manage Loan Products" heading in Inter Bold (700), search bar with 4px border radius, and "Add New Product" button in accent color.
+    2. Filter options to sort by lender, product type, status, etc. as dropdown selectors with 4px border radius.
+    3. Data table with subtle border and alternating row colors showing products with columns for product name in Inter Semibold (600), lender, interest rate range, status with color indicators, and action buttons with 4px border radius.
+    4. Pagination controls at the bottom of the table using accent color for active page.
+    5. Action column with edit, disable/enable, and delete options as icon buttons with appropriate colors (accent for edit, amber for disable, red for delete).
+
+15. **Borrower Applications List**
+    A user management page of a loan comparison platform admin interface for staff to view and manage borrower accounts. Use primary color #FFFDFA for background, secondary color #292B29 for text and table headers, and accent color #047857 for status indicators and view buttons. Table should have rounded corners (8px border radius). The detailed sections are as follows:
+    1. Top section with "Borrower Applications" heading in Inter Bold (700), search bar with 4px border radius, and filter options as dropdown selectors.
+    2. Data table with alternating row background showing borrowers with columns for name in Inter Semibold (600), mobile number, application date in Inter Light (300), loan amount requested, number of matching offers, and document verification status.
+    3. Status indicators using color-coding (accent green for verified, amber for pending, red for rejected) with small dots or pills (4px border radius).
+    4. Action column with "View Details" button with accent-colored outline and 4px border radius.
+    5. Pagination and export options at the bottom with accent color for active elements.
+
+16. **Borrower Detail View**
+    A detailed profile page of a loan comparison platform admin interface for staff to review specific borrower information. Use primary color #FFFDFA for background, secondary color #292B29 for text, and accent color #047857 for buttons and status indicators. Information cards should have 12px border radius. The detailed sections are as follows:
+    1. Top section with borrower name in Inter Bold (700), ID, and application date in Inter Regular (400).
+    2. Personal information card showing contact details and basic profile information with field labels in Inter Regular (400) and values in Inter Medium (500).
+    3. Financial information card displaying income details and loan requirements with the same typography pattern.
+    4. Document verification section with list of submitted documents, preview thumbnails with 4px border radius, and verify/reject buttons using appropriate colors (accent for verify, red for reject).
+    5. Matched loans section showing which products the borrower has been matched with, using accent color to highlight match percentage.
+    6. Activity log showing timeline of borrower actions on the platform with timestamps in Inter Light (300) and vertical timeline line in a light shade of the accent color.
+
+17. **Notification Center**
+    A communication page of a loan comparison app for borrowers to view and manage system updates and alerts. Use primary color #FFFDFA for background, secondary color #292B29 for text, and accent color #047857 for interactive elements and status indicators. Notification cards should have 8px border radius. The detailed sections are as follows:
+    1. Top section with "Notifications" heading in Inter Bold (700) and filter options (All, Unread, Offers, Documents, System) as pill-shaped tabs with 8px border radius, active tab in accent color.
+    2. List of notifications with clear visual hierarchy, each in a card with 8px border radius, showing:
+       - Notification icon indicating type (offer, document, system) in appropriate colors
+       - Brief title in Inter Semibold (600) and descriptive text in Inter Regular (400)
+       - Timestamp in Inter Light (300)
+       - Read/unread status indicator as a small dot in accent color
+    3. Each notification is actionable with "View" option or specific action button with 4px border radius in accent color.
+    4. Option to mark all as read or delete notifications as text buttons with appropriate hover effects.
+    5. Bottom navigation bar with app navigation, with "Notifications" highlighted in accent color. 

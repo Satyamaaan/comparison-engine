@@ -1,0 +1,268 @@
+# Unbias Lending - Web UI Design Prompts
+
+## General Kickoff Prompt
+
+Design a responsive web interface for Unbias Lending, a loan comparison platform that helps borrowers find optimal loan products matching their profile. The website should feature a clean, professional layout with primary color #FFFDFA (off-white), secondary color #292B29 (dark gray), and accent color #047857 (dark green) in a 60-30-10 ratio. Use Inter font family throughout, varying weights for visual hierarchy. Prioritize desktop-first design with responsive breakpoints for tablet and mobile. Include consistent navigation, clear call-to-action buttons, and intuitive form design that builds trust and conveys financial expertise. Focus on accessibility and optimal information hierarchy for financial product comparison.
+
+## Design System Specifications
+
+**Color Scheme (60-30-10 Rule)**
+- Primary color (60%): #FFFDFA (off-white) - Use for page backgrounds, content containers, and form fields
+- Secondary color (30%): #292B29 (dark gray) - Use for typography, headers, and UI elements
+- Accent color (10%): #047857 (dark green) - Use for buttons, links, progress indicators, and important data points
+
+**Typography**
+- Font family: Inter (web-safe fallbacks: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)
+- Font weights:
+  - Light (300): For supplementary content, footers, and legal text
+  - Regular (400): For body copy, descriptions, and form labels
+  - Medium (500): For subheadings and secondary navigation
+  - Semibold (600): For important data points and section headers
+  - Bold (700): For main headings and primary CTAs
+
+**Border Radius**
+- Small: 4px (for form inputs, chips, tags)
+- Medium: 8px (for cards, buttons, containers)
+- Large: 12px (for modal windows, hero sections)
+
+**Web-specific Elements**
+- Maximum content width: 1280px with auto margins
+- Padding: Consistent 16px/24px/32px spacing system
+- Grid system: 12-column for layout flexibility
+- Hover states: Subtle transitions (0.2s) on interactive elements
+- Box shadows: Light for cards (0 2px 4px rgba(0,0,0,0.05))
+- Focus states: 2px accent color outline for accessibility
+
+## Authentication Screens
+
+1. **Mobile Number Login Screen**
+   A responsive login webpage for Unbias Lending where borrowers enter their mobile number for authentication. Design with primary color #FFFDFA for the main background, secondary color #292B29 for text elements, and accent color #047857 for the login button. The detailed sections are as follows:
+   1. Header section with logo (left-aligned) and "Login" text in Inter Bold (700).
+   2. Central content area with descriptive headline "Log in with your mobile number" in Inter Semibold (600), followed by a form containing country code dropdown (with flag icons) and phone input field with appropriate validation states. "Send OTP" button should be full-width on mobile and appropriate width on desktop, using accent color with white text.
+   3. Footer section with "New user? Register here" text (with accent-colored link) and optional social login buttons if applicable. Include small print privacy information in Inter Light (300).
+   4. Implement responsive behavior: centered card layout on desktop (max-width 480px), and full-screen on mobile with appropriate padding.
+
+2. **OTP Verification Screen**
+   A responsive verification webpage for borrowers to confirm their mobile number with OTP. Follow the same color scheme with primary color #FFFDFA as background. The detailed sections are as follows:
+   1. Top section with Unbias Lending logo, "Verify Your Mobile" heading in Inter Bold (700) and clear instructions in Inter Regular (400) explaining where the code was sent.
+   2. Central verification component with 4-6 individual input boxes for OTP digits with automatic focus advancement and appropriate keyboard display on mobile. Show expiration countdown timer below inputs. Include "Verify" button in accent color spanning appropriate width.
+   3. Helper section with "Didn't receive a code?" text and "Resend OTP" link in accent color, along with "Back to Login" option.
+   4. Responsive behavior: maintain centered card layout (max-width 480px) on desktop with appropriate spacing, and optimize for mobile with larger touch targets.
+
+## Borrower Screens
+
+3. **Multi-step Onboarding Form - Step 1: Property Information**
+   A responsive web form for borrowers to provide property details. Use container with primary color #FFFDFA against a subtle background, with secondary color #292B29 for text and labels. The detailed sections are as follows:
+   1. Header with stepper component showing 4 steps with current step highlighted in accent color #047857. Include step titles on desktop, simplify to numbers on mobile.
+   2. Form section with clearly structured questions:
+      - "Have you finalized a property?" presented as horizontally aligned radio buttons on desktop, stacked on mobile, with options "Yes, I have" and "No, I am still looking"
+      - "What is your property's value?" with seven options displayed as a grid of selectable cards on desktop (3-4 columns), and stacked vertically on mobile: "15-25 lakhs", "25-50 lakhs", "50-75 lakhs", "75 lakhs-1cr", "1-1.5 crore", "1.5-2 crore", "Above 2 crore"
+      - "Where is your property?" with searchable dropdown component, "Ahmedabad" as first option, and "Other" with conditional text field that appears when selected
+   3. Each question should have proper spacing between them with clear visual hierarchy
+   4. Footer with prominent "Next" button in accent color aligned right on desktop, full-width on mobile
+   5. Save progress indicator and mechanism to resume later
+
+4. **Multi-step Onboarding Form - Step 2: Personal Information**
+   A responsive web form for personal details collection. Maintain consistent layout with step 1, showing progress in the stepper. The detailed sections are as follows:
+   1. Header with stepper component showing step 2 of 4 active, with completed step 1 marked with checkmark.
+   2. Form section with clear presentation:
+      - "How old are you?" with three age range options presented as horizontally arranged selection cards on desktop, stacked on mobile: "21-40 years old", "41-50 years old", "over 51 years"
+      - Mobile number field (pre-filled from authentication) with verification indicator
+      - Additional fields for full name (with appropriate validation) and email address with formatting validation
+   3. Each field should have clear labels in Inter Regular (400), adequate spacing, and appropriate validation states
+   4. Navigation footer with "Back" button (secondary styling) on left and "Next" button (accent color) on right, appropriately spaced on desktop and full-width stacked on mobile with the primary action on top
+
+5. **Multi-step Onboarding Form - Step 3: Income Details**
+   A responsive web form for financial information collection. Continue the consistent design pattern with the stepper showing progress. The detailed sections are as follows:
+   1. Header with stepper component showing step 3 of 4 active.
+   2. Form section with dynamic components:
+      - "How are you employed?" with two option cards "I make a salary" and "I am self-employed" with appropriate icons
+      - Conditional form fields that change based on employment selection:
+        - If "I make a salary" selected: Show "Gross Monthly Income" with dropdown or card selection for income ranges: "Below 50k", "50k-70k", "70k-1 lakh", "1 lakh-1.5 lakhs", "1.5 lakhs-2 lakhs", "2 lakhs-2.5 lakhs", "2.5 lakhs-3 lakhs", "above 3 lakhs"
+        - If "I am self-employed" selected: Show profit ranges from ITR: "Below 25 lakhs", "25 lakhs-50 lakhs", "50 lakhs-75 lakhs", "75 lakhs-1 crore", "1 crore-1.5 crore", "1.5 crore-2 crore", "above 2 crore"
+      - "Do you pay any EMIs?" with currency input field with appropriate formatting, helper text, and optional information tooltip
+   3. Smooth animations when conditional fields appear/disappear
+   4. Navigation footer with consistent "Back" and "Next" button styling and positioning as in previous steps
+
+6. **Multi-step Onboarding Form - Step 4: Confirmation**
+   A responsive web page for reviewing and confirming all entered information before submission. Maintain design consistency with previous steps. The detailed sections are as follows:
+   1. Header with stepper component showing step 4 of 4 active.
+   2. Summary container with collapsible/expandable sections for each information category:
+      - Property Information section (showing property status, value range, and location)
+      - Personal Information section (showing age range and contact details)
+      - Income Information section (showing employment type, income/profit range, and EMI commitments)
+      - Each section should have an edit icon linking back to the respective step
+      - Use appropriate typography hierarchy with section headers in Inter Semibold (600), field labels in Inter Regular (400), and values in Inter Medium (500)
+   3. Terms and conditions checkbox with scrollable text area containing full terms
+   4. Final "Submit Application" button in accent color #047857 with appropriate emphasis
+   5. On desktop, show a sidebar with brief explanation of "what happens next" process and estimated time to receive matched loan options
+
+7. **Borrower Dashboard**
+   A responsive web dashboard for borrowers after login. Use primary color #FFFDFA for page background, secondary color #292B29 for text and UI elements, and accent color #047857 for interactive components. The detailed sections are as follows:
+   1. Global navigation header with logo on left, main nav links in center, and user menu/notifications on right
+   2. Welcome banner with user's name, profile completion progress bar, and quick action buttons
+   3. Main dashboard grid layout with:
+      - Loan matches card showing number of matches and preview of top matches
+      - Document upload status card with progress indicator
+      - Profile completion checklist
+      - Recent activity timeline
+   4. On mobile, stack cards vertically with full width and simplified content
+   5. Persistent global footer with essential links and contact information
+   6. Implement responsive behavior: multi-column grid on desktop, single column on mobile
+
+8. **Loan Comparison Screen**
+   A responsive web page for comparing loan options. Use primary color #FFFDFA for background, with card-based design for loan offers. The detailed sections are as follows:
+   1. Header section with "Your Matching Loans" heading, sort/filter controls, and view toggle (list/grid)
+   2. Filter panel on desktop (left sidebar, ~25% width) with collapsible filter groups:
+      - Loan amount range
+      - Interest rate range
+      - Loan term options
+      - Lender preferences
+      - Feature requirements (instant approval, no fees, etc.)
+   3. Main content area with loan cards in grid layout (3 columns on large desktop, 2 on small desktop, 1 on mobile):
+      - Each card with consistent height and clear information hierarchy
+      - Lender logo and name at top
+      - Match percentage as circular indicator in accent color
+      - Key loan details with appropriate typography (rate, amount, term)
+      - Feature tags as chips/pills
+      - "View Details" button with outline styling
+   4. Load more pagination or infinite scroll for additional results
+   5. On mobile, filters collapse to modal overlay accessible via filter button
+
+9. **Loan Details Screen**
+   A responsive web page showing comprehensive details about a specific loan offer. Organize information in a clear hierarchy with tabbed sections. The detailed sections are as follows:
+   1. Header with "Back to results" link, lender logo, and loan name
+   2. Hero section with key loan information in a highlighted card:
+      - Match percentage as prominent visual element
+      - Primary loan metrics (amount, rate, term, monthly payment) in a grid layout
+      - Apply/Express Interest button in accent color
+   3. Tabbed interface below with:
+      - Overview tab (default open) with loan description and key features
+      - Eligibility tab with detailed requirements
+      - Fees tab with complete fee structure in table format
+      - Repayment Calculator tab with interactive sliders to adjust terms
+   4. Responsive behavior: maintain side-by-side layout on desktop for key information, stack vertically on mobile with optimized tab interface
+
+10. **Document Upload Interface**
+    A responsive web page for document management and uploads. Use card-based layout with clear status indicators. The detailed sections are as follows:
+    1. Header with "Documents" title and overall completion status
+    2. Instructions panel explaining document requirements and accepted formats
+    3. Document upload grid/list with:
+       - Each document type in its own card
+       - Clear label and description
+       - Upload zone with drag-and-drop capability and file browser fallback
+       - Preview thumbnail after upload
+       - Status indicator (pending, verified, rejected with reason)
+       - Delete/replace controls
+    4. On desktop, arrange in multi-column grid with visual upload states
+    5. On mobile, stack in priority order with simplified upload controls
+    6. Include helpful tooltips explaining why each document is needed
+    7. Add "Submit All Documents" button that appears when all required documents are uploaded
+
+## Admin Screens
+
+11. **Admin Login Screen**
+    A secure web login page for Unbias Lending administration. Use slightly darker variation of the primary color scheme to distinguish from borrower screens. The detailed sections are as follows:
+    1. Centered card layout on desktop (~450px width) with Unbias Lending Admin logo and title
+    2. Form fields for username/email and password with appropriate validation states
+    3. "Remember me" checkbox option
+    4. Login button in accent color spanning full width of form
+    5. Password recovery link below form
+    6. Security information and helpdesk contact
+    7. Optional 2FA component if applicable
+    8. Response design to scale appropriately on different devices while maintaining security
+
+12. **Admin Dashboard**
+    A comprehensive control center web interface for platform administration. Use a professional layout with fixed sidebar navigation. The detailed sections are as follows:
+    1. Global header with:
+       - Logo on far left
+       - Search bar in center
+       - Admin user profile and quick actions menu on right
+    2. Fixed left sidebar (width ~250px on desktop) with:
+       - Primary navigation links with icons
+       - Collapsible categories for different admin functions
+       - Logout option at bottom
+    3. Main content area with responsive grid layout:
+       - KPI cards in top row showing key metrics with accent-colored indicators
+       - Recent applications section with compact table of latest submissions
+       - System alerts and notifications panel
+       - Quick access section for common tasks
+    4. On smaller screens, make sidebar collapsible and reorganize grid to stack vertically
+    5. Use data visualization components for metrics where appropriate
+
+13. **Lender Product Management Form**
+    A web interface for adding and editing loan products in the admin system. Use a structured form layout with logical sections. The detailed sections are as follows:
+    1. Page header with "Add/Edit Loan Product" title and form save status
+    2. Multi-section form with clear visual separation:
+       - Basic product information (top section)
+       - Tabbed interface for different aspects:
+         - Interest and Terms tab with appropriate inputs for financial data
+         - Fees and Charges tab with table-like input for different fee types
+         - Eligibility Criteria tab with condition builder interface
+         - Features and Benefits tab with rich text capabilities
+    3. Preview panel (on desktop) showing how product will appear to borrowers
+    4. Form validation with inline error messages
+    5. Action buttons at bottom: "Cancel" (secondary styling), "Save Draft", and "Publish" (accent color)
+    6. Responsive behavior: side-by-side layout on desktop, stacked on mobile with optimized input controls
+
+14. **Lender Products List View**
+    A web interface for managing multiple loan products. Use a robust data table layout with full CRUD capabilities. The detailed sections are as follows:
+    1. Page header with "Manage Loan Products" title, search field, and "Add New Product" button
+    2. Filter bar with dropdowns for refining the product list
+    3. Data table component with:
+       - Sortable columns (product name, lender, interest rate range, status, etc.)
+       - Pagination controls
+       - Bulk action capabilities
+       - Row-level action menu with edit, disable/enable, duplicate, and delete options
+       - Status indicators using colored badges
+    4. Responsive strategy:
+       - Full table on desktop with all columns
+       - Prioritized columns on tablet
+       - Card-based layout on mobile that transforms table rows into individual cards
+    5. Export options (CSV, PDF) for data extraction
+
+15. **Borrower Applications List**
+    A web interface for managing borrower profiles and applications. Use a comprehensive data table with filtering capabilities. The detailed sections are as follows:
+    1. Page header with "Borrower Applications" title, global search, and filter toggle
+    2. Advanced filter panel with date ranges, status selectors, and loan amount range
+    3. Data table showing:
+       - Borrower name and basic info
+       - Application date and status
+       - Loan amount
+       - Document verification progress
+       - Match count
+       - Action column with view details button
+    4. Color-coded status indicators for quick visual assessment
+    5. Pagination with entries-per-page selector
+    6. Bulk actions for managing multiple applications
+    7. Responsive behavior similar to products list, adapting layout for different screen sizes
+
+16. **Borrower Detail View**
+    A comprehensive web page for reviewing individual borrower information. Use a well-organized layout with clearly separated information sections. The detailed sections are as follows:
+    1. Page header with borrower name, ID, application date, and overall status
+    2. Top action bar with key functions (approve, reject, contact, etc.)
+    3. Tab navigation for different information categories:
+       - Profile tab with personal and contact information
+       - Financial tab with income and loan requirement details
+       - Documents tab with verification interface (preview, approve, reject functions)
+       - Matches tab showing compatible loan products
+       - Activity tab with timeline of actions and events
+    4. Sidebar (on desktop) with summary information and quick status update controls
+    5. Document preview modal for reviewing uploaded files
+    6. Notes and internal communication section for admin team
+    7. On mobile, reorganize as stacked full-width sections with optimized tab navigation
+
+17. **Notification Center**
+    A web interface for managing system notifications. Use a clean layout prioritizing readability. The detailed sections are as follows:
+    1. Page header with "Notifications" title and filter tabs (All, Unread, System, etc.)
+    2. Controls for bulk actions (mark all read, delete selected)
+    3. Notification list with:
+       - Clear hierarchy between notification items
+       - Visual distinction between read/unread states
+       - Category icons in appropriate colors
+       - Timestamp with relative time ("2 hours ago")
+       - Preview of notification content
+       - Action buttons specific to notification type
+    4. Empty states with helpful guidance when no notifications exist
+    5. Infinite scroll or pagination for viewing notification history
+    6. Responsive design to maintain readability on all devices 

@@ -1,0 +1,124 @@
+# Unbias Lending - Screen Design Document
+
+This document outlines all screens needed for the Unbias Lending MVP based on the product requirements.
+
+## Authentication Screens
+
+1. **Mobile Number Login Screen**
+   - Input field for mobile number
+   - Submit button to request OTP
+   - Logo and branding elements
+
+2. **OTP Verification Screen**
+   - Input field(s) for OTP code
+   - Verify button
+   - Resend OTP option
+   - Timer for OTP expiration
+
+## Borrower Screens
+
+3. **Multi-step Onboarding Form**
+   - Step 1: Personal Information
+     - Name, contact details, address fields
+     - Next button
+   - Step 2: Income Details
+     - Income amount, source, frequency fields
+     - Employment details
+     - Next/Back buttons
+   - Step 3: Loan Requirements
+     - Loan amount needed
+     - Purpose of loan
+     - Preferred repayment period
+     - Next/Back buttons
+   - Step 4: Confirmation & Submission
+     - Summary of all entered information
+     - Submit button
+     - Edit option to return to previous steps
+
+4. **Borrower Dashboard**
+   - Welcome section with user name
+   - Profile completion status
+   - Navigation to loan offers
+   - Document upload section
+   - Notification center
+
+5. **Loan Comparison Screen**
+   - Sorted list of loan offer cards
+   - Each card displays:
+     - Lender name
+     - Product name
+     - Interest rate
+     - Match percentage
+     - Tags (instant approval, low interest, etc.)
+     - Fees breakdown
+   - Filtering options
+   - View more details option
+
+6. **Loan Details Screen**
+   - Comprehensive view of a selected loan offer
+   - Full eligibility criteria
+   - Complete fee structure
+   - Repayment calculator
+   - Apply/Express Interest button
+
+7. **Document Upload Interface**
+   - List of required documents
+   - Upload buttons for each document type
+   - Preview of uploaded documents
+   - Status indicators (uploaded, pending, verified)
+
+## Admin Screens
+
+8. **Admin Login Screen**
+   - Username/email input
+   - Password input
+   - Login button
+
+9. **Admin Dashboard**
+   - Overview statistics
+   - Navigation to different admin sections
+   - Recent activity log
+
+10. **Lender Product Management Form**
+    - Fields for:
+      - Lender name
+      - Product name
+      - Interest rate range
+      - Fees and charges
+      - Eligibility criteria
+      - Product features
+    - Save/Submit button
+
+11. **Lender Products List View**
+    - Table showing all products
+    - Columns for key details
+    - Edit and delete options
+    - Add new product button
+
+12. **Borrower Applications List**
+    - Table of borrower profiles
+    - Key information columns
+    - Search and filter options
+    - Select borrower to view details
+
+13. **Borrower Detail View** (Optional for MVP)
+    - Complete borrower profile information
+    - Document verification status
+    - Matched loan offers
+    - Activity history
+
+## Notification Screens
+
+14. **Notification Center**
+    - List of all notifications
+    - Read/unread status
+    - Timestamp
+    - Action buttons when applicable
+
+## Total: 14 Screens
+- 2 Authentication screens
+- 5 Core borrower screens
+- 6 Admin screens
+- 1 Notification screen
+
+Each screen should follow consistent design patterns and utilize the Tailwind CSS framework for styling as specified in the PRD. 

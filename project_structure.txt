@@ -1,0 +1,50 @@
+comparison-engine/
+├── public/                       # Static assets
+├── src/
+│   ├── app/                      # Next.js app directory
+│   │   ├── (auth)/               # Auth-related routes
+│   │   │   ├── login/            # Mobile number login
+│   │   │   ├── verify/           # OTP verification
+│   │   │   └── admin-login/      # Admin login
+│   │   ├── dashboard/            # Borrower dashboard
+│   │   ├── onboarding/           # Borrower onboarding flow
+│   │   │   ├── property/         # Step 1: Property details
+│   │   │   ├── personal/         # Step 2: Personal details
+│   │   │   ├── income/           # Step 3: Income details
+│   │   │   └── confirmation/     # Step 4: Confirmation
+│   │   ├── documents/            # Document upload and management
+│   │   ├── offers/               # Loan comparison and offers
+│   │   ├── admin/                # Admin dashboard and features
+│   │   │   ├── borrowers/        # Borrower list and details
+│   │   │   ├── products/         # Lender product management
+│   │   │   └── documents/        # Document verification
+│   │   ├── api/                  # API routes
+│   │   │   ├── auth/             # Authentication endpoints
+│   │   │   ├── borrowers/        # Borrower CRUD operations
+│   │   │   ├── products/         # Lender product operations
+│   │   │   ├── documents/        # Document management
+│   │   │   ├── matching/         # Matching algorithm endpoint
+│   │   │   └── notifications/    # Notification endpoints
+│   │   ├── layout.tsx            # Root layout
+│   │   └── page.tsx              # Home page
+│   ├── components/               # Reusable UI components
+│   │   ├── ui/                   # shadcn UI components
+│   │   ├── forms/                # Form components
+│   │   ├── dashboard/            # Dashboard-specific components
+│   │   ├── admin/                # Admin-specific components
+│   │   └── shared/               # Shared components
+│   ├── lib/                      # Utility functions and libraries
+│   │   ├── utils.ts              # General utilities
+│   │   ├── supabase.ts           # Supabase client
+│   │   ├── auth.ts               # Authentication helpers
+│   │   └── matching.ts           # Matching algorithm logic
+│   ├── hooks/                    # Custom React hooks
+│   ├── types/                    # TypeScript type definitions
+│   └── styles/                   # Global styles
+├── .env.local                    # Environment variables (gitignored)
+├── .env.example                  # Example environment variables
+├── package.json                  # Dependencies and scripts
+├── next.config.js                # Next.js configuration
+├── tailwind.config.js            # Tailwind CSS configuration
+├── tsconfig.json                 # TypeScript configuration
+└── components.json               # shadcn UI configuration
