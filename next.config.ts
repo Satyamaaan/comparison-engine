@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   experimental: {
     // Reduce reliance on native modules for CSS processing
     optimizeCss: false,
-    // Use simpler CSS processing
-    serverComponentsExternalPackages: ['lightningcss'],
   },
+  // Handle LightningCSS properly
+  serverExternalPackages: ['lightningcss'],
 };
 
 export default nextConfig;

@@ -2,9 +2,16 @@
 
 import { useState } from 'react';
 
+type SupabaseResponse = {
+  success?: boolean;
+  error?: string;
+  data?: Record<string, unknown>;
+  [key: string]: unknown;
+};
+
 export default function SupabaseTestPage() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [response, setResponse] = useState<any>(null);
+  const [response, setResponse] = useState<SupabaseResponse | null>(null);
 
   async function testConnection() {
     try {
