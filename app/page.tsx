@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import BankLogos from "@/components/banks/bank-logos";
+import SetupDatabaseButton from "@/components/admin/setup-database-button";
 
 export default function Home() {
   return (
@@ -150,6 +151,20 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* Admin Section */}
+      <div className="border-t border-gray-200 mt-8 pt-8 pb-8 px-4">
+        <div className="max-w-4xl mx-auto">
+          <details className="text-sm">
+            <summary className="text-gray-500 cursor-pointer mb-4">Admin Area</summary>
+            <div className="p-4 border rounded-md bg-gray-50">
+              <h3 className="font-medium mb-2">Database Setup</h3>
+              <p className="text-gray-600 mb-4">Initialize or update the database structure for borrower data.</p>
+              <SetupDatabaseButton />
+            </div>
+          </details>
+        </div>
+      </div>
 
       {/* Footer */}
       <footer className="py-4 border-t text-center text-gray-500 text-sm">

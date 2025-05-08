@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -9,54 +9,91 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import PageLayout from '@/components/layout/page-layout';
 import ProgressSteps from '@/components/layout/progress-steps';
+import { useBorrowerForm } from '@/utils/borrower-form-context';
 
 export default function PersonalPage() {
   const router = useRouter();
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const { 
+    formState, 
+    updateFormField, 
+    saveFormData, 
+    isLoading,
+    setCurrentStep
+  } = useBorrowerForm();
+
   const [errors, setErrors] = useState({
-    fullName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     phone: '',
-    city: ''
+    address: '',
+    city: '',
+    state: '',
+    pincode: ''
   });
+
+  useEffect(() => {
+    // Set the current step when this page is loaded
+    setCurrentStep('personal');
+  }, [setCurrentStep]);
 
   const validateForm = () => {
     const newErrors = {
-      fullName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       phone: '',
-      city: ''
+      address: '',
+      city: '',
+      state: '',
+      pincode: ''
     };
     
     let isValid = true;
     
-    if (!fullName) {
-      newErrors.fullName = 'Full name is required';
+    if (!formState.first_name) {
+      newErrors.first_name = 'First name is required';
       isValid = false;
     }
     
-    if (!email) {
+    if (!formState.last_name) {
+      newErrors.last_name = 'Last name is required';
+      isValid = false;
+    }
+    
+    if (!formState.email) {
       newErrors.email = 'Email is required';
       isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    } else if (!/\S+@\S+\.\S+/.test(formState.email)) {
       newErrors.email = 'Please enter a valid email address';
       isValid = false;
     }
     
-    if (!phone) {
+    if (!formState.phone) {
       newErrors.phone = 'Phone number is required';
       isValid = false;
-    } else if (!/^[0-9]{10}$/.test(phone.replace(/\s+/g, ''))) {
+    } else if (!/^[0-9]{10}$/.test(formState.phone.replace(/\s+/g, ''))) {
       newErrors.phone = 'Please enter a valid 10-digit phone number';
       isValid = false;
     }
     
-    if (!city) {
+    if (!formState.address) {
+      newErrors.address = 'Address is required';
+      isValid = false;
+    }
+    
+    if (!formState.city) {
       newErrors.city = 'City is required';
+      isValid = false;
+    }
+    
+    if (!formState.state) {
+      newErrors.state = 'State is required';
+      isValid = false;
+    }
+    
+    if (!formState.pincode) {
+      newErrors.pincode = 'Pincode is required';
       isValid = false;
     }
     
@@ -64,18 +101,18 @@ export default function PersonalPage() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
-      setIsLoading(true);
-      
-      // In a real implementation, we would save this data to state management or API
-      // For now, just simulate and navigate to the next step
-      setTimeout(() => {
+      try {
+        await saveFormData();
         // Navigate to the next step in the onboarding process
         router.push('/income');
-      }, 1000);
+      } catch (error) {
+        console.error('Error saving personal data:', error);
+        // You could add error handling UI here
+      }
     }
   };
 
@@ -94,19 +131,35 @@ export default function PersonalPage() {
           </CardHeader>
           
           <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
-                <Input
-                  id="fullName"
-                  type="text"
-                  placeholder="e.g. John Doe"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                />
-                {errors.fullName && (
-                  <p className="text-sm text-red-500">{errors.fullName}</p>
-                )}
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="first_name">First Name</Label>
+                  <Input
+                    id="first_name"
+                    type="text"
+                    placeholder="e.g. John"
+                    value={formState.first_name}
+                    onChange={(e) => updateFormField('first_name', e.target.value)}
+                  />
+                  {errors.first_name && (
+                    <p className="text-sm text-red-500">{errors.first_name}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="last_name">Last Name</Label>
+                  <Input
+                    id="last_name"
+                    type="text"
+                    placeholder="e.g. Doe"
+                    value={formState.last_name}
+                    onChange={(e) => updateFormField('last_name', e.target.value)}
+                  />
+                  {errors.last_name && (
+                    <p className="text-sm text-red-500">{errors.last_name}</p>
+                  )}
+                </div>
               </div>
 
               <div className="space-y-2">
@@ -115,8 +168,8 @@ export default function PersonalPage() {
                   id="email"
                   type="email"
                   placeholder="e.g. john.doe@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formState.email}
+                  onChange={(e) => updateFormField('email', e.target.value)}
                 />
                 {errors.email && (
                   <p className="text-sm text-red-500">{errors.email}</p>
@@ -129,25 +182,69 @@ export default function PersonalPage() {
                   id="phone"
                   type="tel"
                   placeholder="e.g. 9876543210"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={formState.phone}
+                  onChange={(e) => updateFormField('phone', e.target.value)}
                 />
                 {errors.phone && (
                   <p className="text-sm text-red-500">{errors.phone}</p>
                 )}
               </div>
-
+              
               <div className="space-y-2">
-                <Label htmlFor="city">City</Label>
+                <Label htmlFor="address">Address</Label>
                 <Input
-                  id="city"
+                  id="address"
                   type="text"
-                  placeholder="e.g. Mumbai"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="e.g. 123 Main Street"
+                  value={formState.address}
+                  onChange={(e) => updateFormField('address', e.target.value)}
                 />
-                {errors.city && (
-                  <p className="text-sm text-red-500">{errors.city}</p>
+                {errors.address && (
+                  <p className="text-sm text-red-500">{errors.address}</p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="city">City</Label>
+                  <Input
+                    id="city"
+                    type="text"
+                    placeholder="e.g. Mumbai"
+                    value={formState.city}
+                    onChange={(e) => updateFormField('city', e.target.value)}
+                  />
+                  {errors.city && (
+                    <p className="text-sm text-red-500">{errors.city}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="state">State</Label>
+                  <Input
+                    id="state"
+                    type="text"
+                    placeholder="e.g. Maharashtra"
+                    value={formState.state}
+                    onChange={(e) => updateFormField('state', e.target.value)}
+                  />
+                  {errors.state && (
+                    <p className="text-sm text-red-500">{errors.state}</p>
+                  )}
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="pincode">Pincode</Label>
+                <Input
+                  id="pincode"
+                  type="text"
+                  placeholder="e.g. 400001"
+                  value={formState.pincode}
+                  onChange={(e) => updateFormField('pincode', e.target.value)}
+                />
+                {errors.pincode && (
+                  <p className="text-sm text-red-500">{errors.pincode}</p>
                 )}
               </div>
             </CardContent>

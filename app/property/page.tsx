@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -10,49 +10,59 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import PageLayout from '@/components/layout/page-layout';
 import ProgressSteps from '@/components/layout/progress-steps';
+import { useBorrowerForm } from '@/utils/borrower-form-context';
 
 export default function PropertyPage() {
   const router = useRouter();
-  const [propertyType, setPropertyType] = useState('');
-  const [propertyValue, setPropertyValue] = useState('');
-  const [loanAmount, setLoanAmount] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const { 
+    formState, 
+    updateFormField, 
+    saveFormData, 
+    isLoading,
+    setCurrentStep
+  } = useBorrowerForm();
+
   const [errors, setErrors] = useState({
-    propertyType: '',
-    propertyValue: '',
-    loanAmount: ''
+    property_type: '',
+    property_value: '',
+    loan_amount: ''
   });
+
+  useEffect(() => {
+    // Set the current step when this page is loaded
+    setCurrentStep('property');
+  }, [setCurrentStep]);
 
   const validateForm = () => {
     const newErrors = {
-      propertyType: '',
-      propertyValue: '',
-      loanAmount: ''
+      property_type: '',
+      property_value: '',
+      loan_amount: ''
     };
     
     let isValid = true;
     
-    if (!propertyType) {
-      newErrors.propertyType = 'Property type is required';
+    if (!formState.property_type) {
+      newErrors.property_type = 'Property type is required';
       isValid = false;
     }
     
-    if (!propertyValue) {
-      newErrors.propertyValue = 'Property value is required';
+    if (!formState.property_value) {
+      newErrors.property_value = 'Property value is required';
       isValid = false;
-    } else if (isNaN(Number(propertyValue))) {
-      newErrors.propertyValue = 'Property value must be a number';
+    } else if (isNaN(Number(formState.property_value))) {
+      newErrors.property_value = 'Property value must be a number';
       isValid = false;
     }
     
-    if (!loanAmount) {
-      newErrors.loanAmount = 'Loan amount is required';
+    if (!formState.loan_amount) {
+      newErrors.loan_amount = 'Loan amount is required';
       isValid = false;
-    } else if (isNaN(Number(loanAmount))) {
-      newErrors.loanAmount = 'Loan amount must be a number';
+    } else if (isNaN(Number(formState.loan_amount))) {
+      newErrors.loan_amount = 'Loan amount must be a number';
       isValid = false;
-    } else if (Number(loanAmount) > Number(propertyValue)) {
-      newErrors.loanAmount = 'Loan amount cannot exceed property value';
+    } else if (Number(formState.loan_amount) > Number(formState.property_value)) {
+      newErrors.loan_amount = 'Loan amount cannot exceed property value';
       isValid = false;
     }
     
@@ -60,18 +70,18 @@ export default function PropertyPage() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
-      setIsLoading(true);
-      
-      // In a real implementation, we would save this data to state management or API
-      // For now, just simulate and navigate to the next step
-      setTimeout(() => {
+      try {
+        await saveFormData();
         // Navigate to the next step in the onboarding process
         router.push('/personal');
-      }, 1000);
+      } catch (error) {
+        console.error('Error saving property data:', error);
+        // You could add error handling UI here
+      }
     }
   };
 
@@ -95,8 +105,8 @@ export default function PropertyPage() {
                 <Label htmlFor="propertyType">Property Type</Label>
                 <RadioGroup 
                   id="propertyType" 
-                  value={propertyType} 
-                  onValueChange={setPropertyType}
+                  value={formState.property_type} 
+                  onValueChange={(value) => updateFormField('property_type', value)}
                   className="grid grid-cols-2 gap-4"
                 >
                   <div>
@@ -154,8 +164,8 @@ export default function PropertyPage() {
                     </Label>
                   </div>
                 </RadioGroup>
-                {errors.propertyType && (
-                  <p className="text-sm text-red-500">{errors.propertyType}</p>
+                {errors.property_type && (
+                  <p className="text-sm text-red-500">{errors.property_type}</p>
                 )}
               </div>
 
@@ -165,11 +175,11 @@ export default function PropertyPage() {
                   id="propertyValue"
                   type="text"
                   placeholder="e.g. 5000000"
-                  value={propertyValue}
-                  onChange={(e) => setPropertyValue(e.target.value)}
+                  value={formState.property_value}
+                  onChange={(e) => updateFormField('property_value', e.target.value)}
                 />
-                {errors.propertyValue && (
-                  <p className="text-sm text-red-500">{errors.propertyValue}</p>
+                {errors.property_value && (
+                  <p className="text-sm text-red-500">{errors.property_value}</p>
                 )}
               </div>
 
@@ -179,11 +189,11 @@ export default function PropertyPage() {
                   id="loanAmount"
                   type="text"
                   placeholder="e.g. 3500000"
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(e.target.value)}
+                  value={formState.loan_amount}
+                  onChange={(e) => updateFormField('loan_amount', e.target.value)}
                 />
-                {errors.loanAmount && (
-                  <p className="text-sm text-red-500">{errors.loanAmount}</p>
+                {errors.loan_amount && (
+                  <p className="text-sm text-red-500">{errors.loan_amount}</p>
                 )}
               </div>
             </CardContent>

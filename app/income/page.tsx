@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -11,63 +11,88 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import PageLayout from '@/components/layout/page-layout';
 import ProgressSteps from '@/components/layout/progress-steps';
+import { useBorrowerForm } from '@/utils/borrower-form-context';
 
 export default function IncomePage() {
   const router = useRouter();
-  const [incomeSource, setIncomeSource] = useState('');
-  const [monthlyIncome, setMonthlyIncome] = useState('');
-  const [employmentType, setEmploymentType] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [workExperience, setWorkExperience] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const { 
+    formState, 
+    updateFormField, 
+    saveFormData, 
+    isLoading,
+    setCurrentStep
+  } = useBorrowerForm();
+
   const [errors, setErrors] = useState({
-    incomeSource: '',
-    monthlyIncome: '',
-    employmentType: '',
-    companyName: '',
-    workExperience: ''
+    employment_type: '',
+    monthly_income: '',
+    employer_name: '',
+    business_name: '',
+    business_type: '',
+    years_in_business: '',
+    years_with_employer: ''
   });
+
+  useEffect(() => {
+    // Set the current step when this page is loaded
+    setCurrentStep('income');
+  }, [setCurrentStep]);
 
   const validateForm = () => {
     const newErrors = {
-      incomeSource: '',
-      monthlyIncome: '',
-      employmentType: '',
-      companyName: '',
-      workExperience: ''
+      employment_type: '',
+      monthly_income: '',
+      employer_name: '',
+      business_name: '',
+      business_type: '',
+      years_in_business: '',
+      years_with_employer: ''
     };
     
     let isValid = true;
     
-    if (!incomeSource) {
-      newErrors.incomeSource = 'Income source is required';
+    if (!formState.employment_type) {
+      newErrors.employment_type = 'Employment type is required';
       isValid = false;
     }
     
-    if (!monthlyIncome) {
-      newErrors.monthlyIncome = 'Monthly income is required';
+    if (!formState.monthly_income) {
+      newErrors.monthly_income = 'Monthly income is required';
       isValid = false;
-    } else if (isNaN(Number(monthlyIncome))) {
-      newErrors.monthlyIncome = 'Monthly income must be a number';
+    } else if (isNaN(Number(formState.monthly_income))) {
+      newErrors.monthly_income = 'Monthly income must be a number';
       isValid = false;
     }
     
-    if (incomeSource === 'salaried') {
-      if (!employmentType) {
-        newErrors.employmentType = 'Employment type is required';
+    if (formState.employment_type === 'salaried') {
+      if (!formState.employer_name) {
+        newErrors.employer_name = 'Employer name is required';
         isValid = false;
       }
       
-      if (!companyName) {
-        newErrors.companyName = 'Company name is required';
+      if (!formState.years_with_employer) {
+        newErrors.years_with_employer = 'Years with employer is required';
+        isValid = false;
+      } else if (isNaN(Number(formState.years_with_employer))) {
+        newErrors.years_with_employer = 'Years with employer must be a number';
+        isValid = false;
+      }
+    } else if (formState.employment_type === 'self-employed') {
+      if (!formState.business_name) {
+        newErrors.business_name = 'Business name is required';
         isValid = false;
       }
       
-      if (!workExperience) {
-        newErrors.workExperience = 'Work experience is required';
+      if (!formState.business_type) {
+        newErrors.business_type = 'Business type is required';
         isValid = false;
-      } else if (isNaN(Number(workExperience))) {
-        newErrors.workExperience = 'Work experience must be a number';
+      }
+      
+      if (!formState.years_in_business) {
+        newErrors.years_in_business = 'Years in business is required';
+        isValid = false;
+      } else if (isNaN(Number(formState.years_in_business))) {
+        newErrors.years_in_business = 'Years in business must be a number';
         isValid = false;
       }
     }
@@ -76,18 +101,18 @@ export default function IncomePage() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
-      setIsLoading(true);
-      
-      // In a real implementation, we would save this data to state management or API
-      // For now, just simulate and navigate to the next step
-      setTimeout(() => {
+      try {
+        await saveFormData();
         // Navigate to the next step in the onboarding process
         router.push('/confirm');
-      }, 1000);
+      } catch (error) {
+        console.error('Error saving income data:', error);
+        // You could add error handling UI here
+      }
     }
   };
 
@@ -108,11 +133,11 @@ export default function IncomePage() {
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <Label htmlFor="incomeSource">Primary Source of Income</Label>
+                <Label htmlFor="employmentType">Employment Type</Label>
                 <RadioGroup 
-                  id="incomeSource" 
-                  value={incomeSource} 
-                  onValueChange={setIncomeSource}
+                  id="employmentType" 
+                  value={formState.employment_type} 
+                  onValueChange={(value) => updateFormField('employment_type', value)}
                   className="grid grid-cols-2 gap-4"
                 >
                   <div>
@@ -170,8 +195,8 @@ export default function IncomePage() {
                     </Label>
                   </div>
                 </RadioGroup>
-                {errors.incomeSource && (
-                  <p className="text-sm text-red-500">{errors.incomeSource}</p>
+                {errors.employment_type && (
+                  <p className="text-sm text-red-500">{errors.employment_type}</p>
                 )}
               </div>
 
@@ -181,63 +206,97 @@ export default function IncomePage() {
                   id="monthlyIncome"
                   type="text"
                   placeholder="e.g. 60000"
-                  value={monthlyIncome}
-                  onChange={(e) => setMonthlyIncome(e.target.value)}
+                  value={formState.monthly_income}
+                  onChange={(e) => updateFormField('monthly_income', e.target.value)}
                 />
-                {errors.monthlyIncome && (
-                  <p className="text-sm text-red-500">{errors.monthlyIncome}</p>
+                {errors.monthly_income && (
+                  <p className="text-sm text-red-500">{errors.monthly_income}</p>
                 )}
               </div>
 
-              {incomeSource === 'salaried' && (
+              {formState.employment_type === 'salaried' && (
                 <>
                   <div className="space-y-2">
-                    <Label htmlFor="employmentType">Employment Type</Label>
+                    <Label htmlFor="employerName">Employer Name</Label>
+                    <Input
+                      id="employerName"
+                      type="text"
+                      placeholder="e.g. ABC Corporation"
+                      value={formState.employer_name}
+                      onChange={(e) => updateFormField('employer_name', e.target.value)}
+                    />
+                    {errors.employer_name && (
+                      <p className="text-sm text-red-500">{errors.employer_name}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="yearsWithEmployer">Years with Employer</Label>
+                    <Input
+                      id="yearsWithEmployer"
+                      type="text"
+                      placeholder="e.g. 5"
+                      value={formState.years_with_employer}
+                      onChange={(e) => updateFormField('years_with_employer', e.target.value)}
+                    />
+                    {errors.years_with_employer && (
+                      <p className="text-sm text-red-500">{errors.years_with_employer}</p>
+                    )}
+                  </div>
+                </>
+              )}
+              
+              {formState.employment_type === 'self-employed' && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="businessName">Business Name</Label>
+                    <Input
+                      id="businessName"
+                      type="text"
+                      placeholder="e.g. XYZ Enterprises"
+                      value={formState.business_name}
+                      onChange={(e) => updateFormField('business_name', e.target.value)}
+                    />
+                    {errors.business_name && (
+                      <p className="text-sm text-red-500">{errors.business_name}</p>
+                    )}
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="businessType">Business Type</Label>
                     <Select 
-                      value={employmentType}
-                      onValueChange={setEmploymentType}
+                      value={formState.business_type}
+                      onValueChange={(value) => updateFormField('business_type', value)}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select employment type" />
+                        <SelectValue placeholder="Select business type" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="full-time">Full-time</SelectItem>
-                          <SelectItem value="part-time">Part-time</SelectItem>
-                          <SelectItem value="contract">Contract</SelectItem>
+                          <SelectItem value="retail">Retail</SelectItem>
+                          <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                          <SelectItem value="services">Services</SelectItem>
+                          <SelectItem value="technology">Technology</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
-                    {errors.employmentType && (
-                      <p className="text-sm text-red-500">{errors.employmentType}</p>
+                    {errors.business_type && (
+                      <p className="text-sm text-red-500">{errors.business_type}</p>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="companyName">Company Name</Label>
+                    <Label htmlFor="yearsInBusiness">Years in Business</Label>
                     <Input
-                      id="companyName"
-                      type="text"
-                      placeholder="e.g. ABC Corporation"
-                      value={companyName}
-                      onChange={(e) => setCompanyName(e.target.value)}
-                    />
-                    {errors.companyName && (
-                      <p className="text-sm text-red-500">{errors.companyName}</p>
-                    )}
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="workExperience">Work Experience (Years)</Label>
-                    <Input
-                      id="workExperience"
+                      id="yearsInBusiness"
                       type="text"
                       placeholder="e.g. 5"
-                      value={workExperience}
-                      onChange={(e) => setWorkExperience(e.target.value)}
+                      value={formState.years_in_business}
+                      onChange={(e) => updateFormField('years_in_business', e.target.value)}
                     />
-                    {errors.workExperience && (
-                      <p className="text-sm text-red-500">{errors.workExperience}</p>
+                    {errors.years_in_business && (
+                      <p className="text-sm text-red-500">{errors.years_in_business}</p>
                     )}
                   </div>
                 </>
