@@ -30,46 +30,9 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** A working development environment where changes can be tested before deployment
 - **Success Check:** Run the project locally and confirm Supabase connection works
 
-## Phase 2: Authentication System (Week 2)
+## Phase 2: Borrower Onboarding (Week 2-3)
 
-### Milestone 3: Basic Authentication UI
-- **Tasks:**
-  - Create mobile number login screen using shadcn UI components (Card, Input, Button)
-  - Create OTP verification screen using shadcn UI components (OTP input fields)
-  - Add basic routing between these screens
-- **Expected Outcome:** Login pages that match the design but aren't yet functional
-- **Success Check:** Navigate between login and verification screens through the UI
-
-### Milestone 4: Functional Authentication
-- **Tasks:**
-  - Implement Supabase Auth for OTP login
-  - Set up session management
-  - Create protected routes for authenticated users
-- **Expected Outcome:** Working authentication system with OTP verification
-- **Success Check:** Successfully log in with a mobile number and access protected pages
-
-## Phase 3: Database Structure (Week 3)
-
-### Milestone 5: Core Database Tables
-- **Tasks:**
-  - Create 'borrowers' table in Supabase
-  - Create 'lender_products' table in Supabase
-  - Create 'documents' table in Supabase
-  - Create 'matched_offers' table in Supabase
-- **Expected Outcome:** Basic database structure ready for data
-- **Success Check:** View tables in Supabase dashboard and confirm they match the required structure
-
-### Milestone 6: API Routes
-- **Tasks:**
-  - Create API route for borrower profile CRUD operations
-  - Create API route for lender products CRUD operations
-  - Set up proper error handling and validation
-- **Expected Outcome:** Backend API endpoints that connect to your database
-- **Success Check:** Test API endpoints using a tool like Postman or the browser
-
-## Phase 4: Borrower Onboarding - Part 1 (Week 4)
-
-### Milestone 7: Property Information Form
+### Milestone 3: Property Information Form
 - **Tasks:**
   - Create Step 1 of onboarding form (property details)
   - Use shadcn UI form components, radio groups, selectors, and cards
@@ -78,17 +41,15 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** First step of onboarding form working with validation
 - **Success Check:** Fill out property information form and navigate to next step
 
-### Milestone 8: Personal Information Form
+### Milestone 4: Personal Information Form
 - **Tasks:**
   - Create Step 2 of onboarding form (personal details)
-  - Connect to authentication data to pre-fill fields
+  - Add fields for contact information
   - Implement back and next navigation
 - **Expected Outcome:** Second step of onboarding form working with validation
 - **Success Check:** Navigate between first and second steps while maintaining entered data
 
-## Phase 5: Borrower Onboarding - Part 2 (Week 5)
-
-### Milestone 9: Income Details Form
+### Milestone 5: Income Details Form
 - **Tasks:**
   - Create Step 3 of onboarding form (income details)
   - Implement conditional fields based on employment type
@@ -96,7 +57,7 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Third step of onboarding form with dynamic fields
 - **Success Check:** Test different paths through the form based on employment selection
 
-### Milestone 10: Confirmation & Submission
+### Milestone 6: Confirmation & Submission
 - **Tasks:**
   - Create Step 4 of onboarding form (confirmation)
   - Display summary of all entered information
@@ -104,63 +65,46 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Complete onboarding flow that saves data to database
 - **Success Check:** Complete full onboarding process and verify data appears in Supabase
 
-## Phase 6: Borrower Dashboard (Week 6)
+## Phase 3: Database Structure (Week 4)
 
-### Milestone 11: Dashboard UI
+### Milestone 7: Core Database Tables
 - **Tasks:**
-  - Create borrower dashboard layout
-  - Implement welcome section and profile completion indicator
-  - Add navigation to key features
-- **Expected Outcome:** Basic dashboard UI without functional components
-- **Success Check:** Access dashboard after login and see proper layout
+  - Create 'borrowers' table in Supabase
+  - Create 'lender_products' table in Supabase
+  - Create 'documents' table in Supabase
+  - Create 'matched_offers' table in Supabase
+- **Expected Outcome:** Basic database structure ready for data
+- **Success Check:** View tables in Supabase dashboard and confirm they match the required structure
 
-### Milestone 12: Dynamic Dashboard Content
+### Milestone 8: API Routes
 - **Tasks:**
-  - Fetch and display borrower profile information
-  - Show document upload status
-  - Add notification placeholder
-- **Expected Outcome:** Dashboard populated with real user data
-- **Success Check:** Login as different users and see their specific information
+  - Create API route for borrower profile CRUD operations
+  - Create API route for lender products CRUD operations
+  - Set up proper error handling and validation
+- **Expected Outcome:** Backend API endpoints that connect to your database
+- **Success Check:** Test API endpoints using a tool like Postman or the browser
 
-## Phase 7: Admin Authentication (Week 7)
+## Phase 4: Authentication System (Week 5)
 
-### Milestone 13: Admin Login UI
+### Milestone 9: Basic Authentication UI
 - **Tasks:**
-  - Create admin login screen
-  - Set up admin-specific routes
-  - Add basic admin dashboard layout
-- **Expected Outcome:** Separate authentication flow for admin users
-- **Success Check:** Navigate to admin login page and see the login form
+  - Create mobile number login screen using shadcn UI components (Card, Input, Button)
+  - Create OTP verification screen using shadcn UI components (OTP input fields)
+  - Add basic routing between these screens
+- **Expected Outcome:** Login pages that match the design but aren't yet functional
+- **Success Check:** Navigate between login and verification screens through the UI
 
-### Milestone 14: Admin Authentication Logic
+### Milestone 10: Functional Authentication
 - **Tasks:**
-  - Implement admin authentication with Supabase
-  - Set up admin role verification
-  - Create protected admin routes
-- **Expected Outcome:** Functional admin login that verifies admin role
-- **Success Check:** Successfully log in as admin and access admin dashboard
+  - Implement Supabase Auth for OTP login
+  - Set up session management
+  - Create protected routes for loan offers
+- **Expected Outcome:** Working authentication system with OTP verification
+- **Success Check:** Successfully log in with a mobile number and access loan offers
 
-## Phase 8: Lender Product Management (Week 8)
+## Phase 5: Matching Algorithm & Loan Comparison (Week 6)
 
-### Milestone 15: Product Input Form
-- **Tasks:**
-  - Create lender product form UI
-  - Implement form validation
-  - Set up submission to database
-- **Expected Outcome:** Ability to add new loan products to the system
-- **Success Check:** Add a test product and verify it appears in the database
-
-### Milestone 16: Product List View
-- **Tasks:**
-  - Create product list page in admin dashboard
-  - Fetch products from database
-  - Add basic edit/delete functionality
-- **Expected Outcome:** Interface for managing all loan products
-- **Success Check:** View list of added products and modify them
-
-## Phase 9: Matching Algorithm (Week 9)
-
-### Milestone 17: Basic Matching Logic
+### Milestone 11: Basic Matching Logic
 - **Tasks:**
   - Define initial matching criteria
   - Implement matching function
@@ -168,17 +112,35 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Function that compares borrower profiles with loan products
 - **Success Check:** Test matching with sample borrower data and verify results
 
-### Milestone 18: Loan Offer Display
+### Milestone 12: Loan Comparison Page
 - **Tasks:**
   - Create loan comparison page UI
   - Implement sorting and filtering of offers
   - Connect to matching API
 - **Expected Outcome:** Page showing matching loan offers for borrowers
-- **Success Check:** Log in as a borrower and see relevant loan offers
+- **Success Check:** Complete onboarding, authenticate, and see relevant loan offers
 
-## Phase 10: Document Management (Week 10)
+## Phase 6: Borrower Dashboard (Week 7)
 
-### Milestone 19: Document Upload UI
+### Milestone 13: Dashboard UI
+- **Tasks:**
+  - Create borrower dashboard layout
+  - Implement welcome section and profile completion indicator
+  - Add navigation to key features
+- **Expected Outcome:** Basic dashboard UI without functional components
+- **Success Check:** Access dashboard after login and see proper layout
+
+### Milestone 14: Dynamic Dashboard Content
+- **Tasks:**
+  - Fetch and display borrower profile information
+  - Show document upload status
+  - Add notification placeholder
+- **Expected Outcome:** Dashboard populated with real user data
+- **Success Check:** Login as different users and see their specific information
+
+## Phase 7: Document Management (Week 8)
+
+### Milestone 15: Document Upload UI
 - **Tasks:**
   - Create document upload interface
   - Connect to Supabase Storage
@@ -186,7 +148,7 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Interface for uploading required documents
 - **Success Check:** Successfully upload test documents to the system
 
-### Milestone 20: Document Verification in Admin
+### Milestone 16: Document Verification in Admin
 - **Tasks:**
   - Add document review section to admin dashboard
   - Implement document approval/rejection
@@ -194,7 +156,43 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Ability for admins to verify uploaded documents
 - **Success Check:** Upload a document as borrower, then verify it as admin
 
-## Phase 11: Borrower Application Management (Week 11)
+## Phase 8: Admin Authentication (Week 9)
+
+### Milestone 17: Admin Login UI
+- **Tasks:**
+  - Create admin login screen
+  - Set up admin-specific routes
+  - Add basic admin dashboard layout
+- **Expected Outcome:** Separate authentication flow for admin users
+- **Success Check:** Navigate to admin login page and see the login form
+
+### Milestone 18: Admin Authentication Logic
+- **Tasks:**
+  - Implement admin authentication with Supabase
+  - Set up admin role verification
+  - Create protected admin routes
+- **Expected Outcome:** Functional admin login that verifies admin role
+- **Success Check:** Successfully log in as admin and access admin dashboard
+
+## Phase 9: Lender Product Management (Week 10)
+
+### Milestone 19: Product Input Form
+- **Tasks:**
+  - Create lender product form UI
+  - Implement form validation
+  - Set up submission to database
+- **Expected Outcome:** Ability to add new loan products to the system
+- **Success Check:** Add a test product and verify it appears in the database
+
+### Milestone 20: Product List View
+- **Tasks:**
+  - Create product list page in admin dashboard
+  - Fetch products from database
+  - Add basic edit/delete functionality
+- **Expected Outcome:** Interface for managing all loan products
+- **Success Check:** View list of added products and modify them
+
+## Phase 10: Borrower Application Management (Week 11)
 
 ### Milestone 21: Borrower List View for Admin
 - **Tasks:**
@@ -212,7 +210,7 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Comprehensive view of individual borrower details
 - **Success Check:** Click on a borrower in the list and see their complete profile
 
-## Phase 12: Notifications (Week 12)
+## Phase 11: Notifications (Week 12)
 
 ### Milestone 23: Notification System
 - **Tasks:**
@@ -230,7 +228,7 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Interface for users to view and manage notifications
 - **Success Check:** Receive and interact with notifications in the UI
 
-## Phase 13: Polish & Refinement (Week 13)
+## Phase 12: Polish & Refinement (Week 13)
 
 ### Milestone 25: UI/UX Improvements
 - **Tasks:**
@@ -248,7 +246,7 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Faster and more efficient application
 - **Success Check:** Measure and compare load times before and after optimization
 
-## Phase 14: Testing & Launch Preparation (Week 14)
+## Phase 13: Testing & Launch Preparation (Week 14)
 
 ### Milestone 27: Comprehensive Testing
 - **Tasks:**
@@ -266,7 +264,7 @@ This plan breaks down the development process into small, achievable milestones 
 - **Expected Outcome:** Application ready for public or beta launch
 - **Success Check:** Final review of all systems and confirmation they're production-ready
 
-## Phase 15: Launch & Monitoring (Week 15)
+## Phase 14: Launch & Monitoring (Week 15)
 
 ### Milestone 29: Launch
 - **Tasks:**

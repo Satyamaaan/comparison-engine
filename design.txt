@@ -2,47 +2,42 @@
 
 This document outlines all screens needed for the Unbias Lending MVP based on the product requirements.
 
-## Authentication Screens
-
-1. **Mobile Number Login Screen**
-   - Input field for mobile number
-   - Submit button to request OTP
-   - Logo and branding elements
-
-2. **OTP Verification Screen**
-   - Input field(s) for OTP code
-   - Verify button
-   - Resend OTP option
-   - Timer for OTP expiration
-
 ## Borrower Screens
 
-3. **Multi-step Onboarding Form**
-   - Step 1: Personal Information
-     - Name, contact details, address fields
+1. **Multi-step Onboarding Form**
+   - Step 1: Property Information
+     - Property type, value, loan amount fields
      - Next button
-   - Step 2: Income Details
+   - Step 2: Personal Information
+     - Name, contact details, address fields
+     - Next/Back buttons
+   - Step 3: Income Details
      - Income amount, source, frequency fields
      - Employment details
-     - Next/Back buttons
-   - Step 3: Loan Requirements
-     - Loan amount needed
-     - Purpose of loan
-     - Preferred repayment period
      - Next/Back buttons
    - Step 4: Confirmation & Submission
      - Summary of all entered information
      - Submit button
      - Edit option to return to previous steps
 
-4. **Borrower Dashboard**
-   - Welcome section with user name
-   - Profile completion status
-   - Navigation to loan offers
-   - Document upload section
-   - Notification center
+## Authentication Screens
 
-5. **Loan Comparison Screen**
+2. **Mobile Number Login Screen**
+   - Input field for mobile number
+   - Submit button to request OTP
+   - Logo and branding elements
+   - Appears after completing the onboarding form
+
+3. **OTP Verification Screen**
+   - Input field(s) for OTP code
+   - Verify button
+   - Resend OTP option
+   - Timer for OTP expiration
+   - Leads to loan comparison screen upon verification
+
+## Loan Comparison Screens
+
+4. **Loan Comparison Screen**
    - Sorted list of loan offer cards
    - Each card displays:
      - Lender name
@@ -54,12 +49,21 @@ This document outlines all screens needed for the Unbias Lending MVP based on th
    - Filtering options
    - View more details option
 
-6. **Loan Details Screen**
+5. **Loan Details Screen**
    - Comprehensive view of a selected loan offer
    - Full eligibility criteria
    - Complete fee structure
    - Repayment calculator
    - Apply/Express Interest button
+
+## Borrower Dashboard Screens
+
+6. **Borrower Dashboard**
+   - Welcome section with user name
+   - Profile completion status
+   - Navigation to loan offers
+   - Document upload section
+   - Notification center
 
 7. **Document Upload Interface**
    - List of required documents
@@ -116,9 +120,10 @@ This document outlines all screens needed for the Unbias Lending MVP based on th
     - Action buttons when applicable
 
 ## Total: 14 Screens
+- 5 Core borrower and loan comparison screens
 - 2 Authentication screens
-- 5 Core borrower screens
-- 6 Admin screens
+- 2 Dashboard and document screens
+- 4 Admin screens
 - 1 Notification screen
 
 Each screen should follow consistent design patterns and utilize the Tailwind CSS framework for styling as specified in the PRD. 
